@@ -1,0 +1,142 @@
+﻿@{WebApplication2.Models.dbModel ddb = new WebApplication2.Models.dbModel();}
+@{WebApplication2.Models.FlightTicket flightTicket = new WebApplication2.Models.FlightTicket();}
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@*//caroselo picutre*@
+<section class="home-slider owl-carousel owl-loaded owl-drag">
+
+
+    <div class="slider-item" style="background-image: url('../../images/bg_5.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text align-items-center">
+                <div class="col-md-7 col-sm-12 ftco-animate">
+                    <h1 class="mb-3">Wellcome To Pedro Flights</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slider-item" style="background-image: url('../../images/bg_4.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text align-items-center">
+                <div class="col-md-7 col-sm-12 ftco-animate">
+                    <h1 class="mb-3"> The Best Flight Agency </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slider-item" style="background-image: url('../../images/bg_3.jpg');">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text align-items-center">
+                <div class="col-md-7 col-sm-12 ftco-animate">
+                    <h1 class="mb-3">Travel With The Best Price </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@*///search div*@
+
+@using (Html.BeginForm("search", "Home", FormMethod.Post))
+{
+    <div class="ftco-section-search">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 tabulation-search">
+
+                    <div class="tab-content py-5" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <div class="block-17">
+                                <form action="" method="post" class="d-block d-lg-flex">
+                                    <div class="fields d-block d-lg-flex">
+                                        <div class="textfield-search one-third"><input type="text" name="Location" class="form-control" placeholder="Search Location"></div>
+                                        <div class="check-in one-third"><input type="text" name="checkin_date" class="form-control" placeholder="Check-in date"></div>
+                                        <div class="check-out one-third"><input type="text" name="checkout_date" class="form-control" placeholder="Check-out date"></div>
+                                        <div class="select-wrap one-third">
+                                            <select name="Guest" class="form-control">
+                                                <option value="1">Guest</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4+</option>
+                                            </select>
+                                        </div>
+                                        <input type="submit" class="search-submit btn btn-primary" value="Find Flights">
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+@*litel abut us*@
+<section class="ftco-section-2" style="background-color:rgba(0, 0, 0, 0.02);">
+    <div class="container-fluid d-flex">
+        <div class="section-2-blocks-wrapper row no-gutters">
+            <div class="img col-sm-12 col-lg-6" style="background-image: url('../../images/image_2.jpg');">
+            </div>
+            <div class="text col-lg-6 ftco-animate">
+                <div class="text-inner align-self-start">
+
+                    <h3>Wellcome To PedroFlight since 2018 The Best Flight Agency </h3>
+                    <p>In PedroFlight you can find a large number of flights to all destinations in the world at the lowest prices Because if you choose us you will know that you will get the best value for your money</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<center><h2 id="pedro" class="mb-5 p-2 pb-3 ftco-animate" style="color:#ff5f5f" ,>ALL Deals</h2></center>
+
+
+
+
+
+<div class="container-fluid">
+    <div class="col-lg-5 p-2 pl-md-5 heading-section">
+        <div class="row mb-5 pb-5 no-gutters">
+            <div class="row no-gutters d-flex" style="width:1400px;">
+                <section class="home-slider owl-carousel owl-loaded owl-drag align-middle">
+                    @{foreach (var item in ddb.FlightTickets)
+                        {
+                            if (item.flightActive != false)
+                            {
+                            <div class="col-md-12 ftco-animate">
+                                <a href="#@item.flightID" class="block-5" style=" height:500px;background-image: url('../../images/flightImage/@item.flightTicketPicture')">
+                                    <span class="price">$@item.flightPrice</span>
+                                    <h3 class="heading">@item.flightDestanation</h3>
+                                    <span> @item.flightInfo</span><br/>
+                                    <span class="star-rate"></span><span class="fas fa-star"> </span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    <span class="fas fa-star"></span>
+                                    @Html.ActionLink("Flight details", "flightDetails", "Home", new { id = item.flightID }, null)
+                                    <span>1000 reviews</span>
+                                </a>
+                            </div>
+                                }
+                            }
+                        }
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+

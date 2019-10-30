@@ -1,0 +1,84 @@
+﻿@{int sum = 0;}
+@{
+    ViewBag.Title = "Cart";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<head>
+
+</head>
+<section class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image: url('../../images/hotel-9.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text align-items-center">
+                <div class="col-md-7 col-sm-12 ftco-animate">
+                    <h1 class="mb-3">My Cart</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+<div class="container">
+    <table id="cart" class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th style="width:50%">Flight</th>
+                <th style="width:10%">Price</th>
+                <th style="width:8%">Quantity</th>
+                <th style="width:22%" class="text-center">Subtotal</th>
+                <th style="width:10%"></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in (List<WebApplication2.Controllers.Item>)Session["cart"])
+        {
+            <tbody>
+                <tr>
+                    <td data-th="Product">
+                        <div class="row">
+                            <div class="col-sm-2 hidden-xs"><img src="../../images/pedrFlightImg/@item.Flights.flightTicketPicture" width="200px" height="100px" class="img-responsive" /></div>
+                            <div class="col-sm-10">
+                                <h4 class="nomargin">@item.Flights.flightDestanation</h4>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-th="Price">@item.Flights.flightPrice</td>
+                    <td data-th="Quantity" class="text-center"> @item.Quantity </td>
+                    <td data-th="Subtotal" class="text-center">@(int.Parse(item.Flights.flightPrice) * item.Quantity)</td>
+                    <td class="actions" data-th="">
+
+                        <button class="btn btn-danger btn-sm">@Html.ActionLink("remove", "removeFromCart", "Home", new { id = item.Flights.flightID },null)</button>
+                    </td>
+                </tr>
+
+
+            </tbody>
+
+            sum += (int.Parse(item.Flights.flightPrice) * item.Quantity);
+        }
+
+
+        <tfoot>
+            <tr>
+                <td>@Html.ActionLink("Contiue Shoping", "Index", "Home")</td>
+                <td colspan="2" class="hidden-xs"></td>
+                <td class="hidden-xs text-center"><strong>@sum</strong></td>
+                @if (sum != 0) {
+                <td>
+                    <button class="btn btn-danger btn-sm">
+                    @Html.ActionLink("buy", "finalPurchase", "home")
+                    </button>
+                </td>
+                }
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+
+

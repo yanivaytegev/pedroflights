@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en"  >
+<head>
+    <title>Pedro Flights</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="../../Content/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="../../Content/css/animate.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../Content/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../Content/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../../Content/css/magnific-popup.css">
+    <link rel="stylesheet" href="../../Content/css/aos.css">
+    <link rel="stylesheet" href="../../Content/css/ionicons.min.css">
+    <link rel="stylesheet" href="../../Content/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="../../Content/css/jquery.timepicker.css">
+
+    <link rel="stylesheet" href="../../Content/css/flaticon.css">
+    <link rel="stylesheet" href="../../Content/css/icomoon.css">
+    <link rel="stylesheet" href="../../Content/css/style.css">
+</head>
+<body style="background-color:rgba(0, 0, 0, 0.02);">
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fas fa-caret-square-down"></span>Menu
+            </button>
+            <img src="~/images/pedroair.png" width="50" height="50" />
+            @Html.ActionLink("PedroFlights", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    @if (Session["userName"] != null)
+                    {
+                        <li class="navbar-brand">Hello,@Session["userName"]</li>
+
+                        <li class="navbar-brand">@Html.ActionLink("Add Flight", "addFlight", "Home")</li>
+                        <li class="navbar-brand">@Html.ActionLink("Profile", "profile", "Home")</li>
+                    }
+
+                    <li class="navbar-brand">@Html.ActionLink("About", "about", "Home")</li>
+                    <li class="navbar-brand">@Html.ActionLink("Contact", "contact", "Home")</li>
+                    <li class="navbar-brand">@Html.ActionLink("My Cart", "addToCart", "Home")</li>
+
+
+
+
+                    @if (Session["userName"] == null)
+                    {
+                        <li class="navbar-brand">@Html.ActionLink("Registration", "registration", "Home")</li>
+                        <li class="navbar-brand">@Html.ActionLink("Login", "login", "Home")</li>
+
+                    }
+
+                    @if (Session["userName"] != null)
+                    {
+                        <li class="navbar-brand">
+                            <a href="@Url.Action("Logout","Home")">log out</a>
+
+                        </li>
+                    }
+
+                </ul>
+               
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+    
+        @RenderBody()
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Pedro Flights</h2>
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">Contact Information</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="py-2 d-block">Lod King Shlomo 5/7 </a></li>
+                            <li><a href="tel://0533327951" class="py-2 d-block">+ 0533327951</a></li>
+                            <li><a href="#" class="py-2 d-block">PedroFlights.com</a></li>
+                            <li><a href="mailto:pedrofilim15@gmail.com" class="py-2 d-block">pedrofilim15@gmail.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <ul class="ftco-footer-social list-unstyled float-md-right float-lft">
+                            <li class="ftco-animate"><a href="https://www.instagram.com/"><span><i class="fab fa-instagram"></i></span></a></li>
+                            <li class="ftco-animate"><a href="https://www.facebook.com"><span><i class="fab fa-facebook-square"></i></span></a></li>
+                            <li class="ftco-animate"><a href="http://www.twitter.com"><span><i class="fab fa-twitter"></i></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                         &copy;
+                       All rights reserved to PedroFlights Company
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+    <script src="../../Scripts/js/jquery.min.js"></script>
+    <script src="../../Scripts/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../../Scripts/js/popper.min.js"></script>
+    <script src="../../Scripts/js/bootstrap.min.js"></script>
+    <script src="../../Scripts/js/jquery.easing.1.3.js"></script>
+    <script src="../../Scripts/js/jquery.waypoints.min.js"></script>
+    <script src="../../Scripts/js/jquery.stellar.min.js"></script>
+    <script src="../../Scripts/js/owl.carousel.min.js"></script>
+    <script src="../../Scripts/js/jquery.magnific-popup.min.js"></script>
+    <script src="../../Scripts/js/aos.js"></script>
+    <script src="../../Scripts/js/jquery.animateNumber.min.js"></script>
+    <script src="../../Scripts/js/bootstrap-datepicker.js"></script>
+    <script src="../../Scripts/js/jquery.timepicker.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="../../Scripts/js/google-map.js"></script>
+    <script src="../../Scripts/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PedroFlightsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="customerID" />
+          </Key>
+          <Property Name="customerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerFirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="customerLastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="customerAge" Type="int" />
+          <Property Name="customerPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="customerAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="customreCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="customerEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="customerImage" Type="nvarchar(max)" />
+          <Property Name="customerActive" Type="bit" />
+          <Property Name="customerUserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="customerUserPassword" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FlightTickets">
+          <Key>
+            <PropertyRef Name="flightID" />
+          </Key>
+          <Property Name="flightID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerID" Type="int" />
+          <Property Name="flightDestanation" Type="nvarchar" MaxLength="50" />
+          <Property Name="flighGoDate" Type="date" />
+          <Property Name="flightBackDate" Type="date" />
+          <Property Name="flightConnection" Type="int" />
+          <Property Name="flightGate" Type="nchar" MaxLength="10" />
+          <Property Name="flightSeat" Type="int" />
+          <Property Name="flightAirCompany" Type="nvarchar" MaxLength="50" />
+          <Property Name="flightTicketQuantity" Type="int" />
+          <Property Name="flightDepartment" Type="nchar" MaxLength="10" />
+          <Property Name="flightTicketPicture" Type="nvarchar(max)" />
+          <Property Name="flightRow" Type="char" MaxLength="10" />
+          <Property Name="flightNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="flightGoTime" Type="time" Precision="7" />
+          <Property Name="flightBackTime" Type="time" Precision="7" />
+          <Property Name="flightActive" Type="bit" />
+          <Property Name="flightPrice" Type="nchar" MaxLength="10" />
+          <Property Name="flightInfo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerID" Type="int" />
+          <Property Name="flightID" Type="int" />
+          <Property Name="orderPrice" Type="nvarchar(max)" />
+          <Property Name="orderDate" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_FlightTickets_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="FlightTickets" Type="Self.FlightTickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="FlightTickets">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PedroFlightsModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FlightTickets" EntityType="Self.FlightTickets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FlightTickets_Customers" Association="Self.FK_FlightTickets_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="FlightTickets" EntitySet="FlightTickets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PedroFlightsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customerID" />
+          </Key>
+          <Property Name="customerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customerAge" Type="Int32" />
+          <Property Name="customerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customerAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customreCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customerImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="customerActive" Type="Boolean" />
+          <Property Name="customerUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customerUserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FlightTickets" Relationship="Self.FK_FlightTickets_Customers" FromRole="Customers" ToRole="FlightTickets" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Customers" FromRole="Customers" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="FlightTicket">
+          <Key>
+            <PropertyRef Name="flightID" />
+          </Key>
+          <Property Name="flightID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerID" Type="Int32" />
+          <Property Name="flightDestanation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="flighGoDate" Type="DateTime" Precision="0" />
+          <Property Name="flightBackDate" Type="DateTime" Precision="0" />
+          <Property Name="flightConnection" Type="Int32" />
+          <Property Name="flightGate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="flightSeat" Type="Int32" />
+          <Property Name="flightAirCompany" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="flightTicketQuantity" Type="Int32" />
+          <Property Name="flightDepartment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="flightTicketPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="flightRow" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="flightNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="flightGoTime" Type="Time" Precision="7" />
+          <Property Name="flightBackTime" Type="Time" Precision="7" />
+          <Property Name="flightActive" Type="Boolean" />
+          <Property Name="flightPrice" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="flightInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_FlightTickets_Customers" FromRole="FlightTickets" ToRole="Customers" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_FlightTickets" FromRole="FlightTickets" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerID" Type="Int32" />
+          <Property Name="flightID" Type="Int32" />
+          <Property Name="orderPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="orderDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Orders_Customers" FromRole="Orders" ToRole="Customers" />
+          <NavigationProperty Name="FlightTicket" Relationship="Self.FK_Orders_FlightTickets" FromRole="Orders" ToRole="FlightTickets" />
+        </EntityType>
+        <Association Name="FK_FlightTickets_Customers">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="FlightTickets" Type="Self.FlightTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="FlightTickets">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Customers">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_FlightTickets">
+          <End Role="FlightTickets" Type="Self.FlightTicket" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FlightTickets">
+              <PropertyRef Name="flightID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="flightID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="FlightTickets" EntityType="Self.FlightTicket" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <AssociationSet Name="FK_FlightTickets_Customers" Association="Self.FK_FlightTickets_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="FlightTickets" EntitySet="FlightTickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Customers" Association="Self.FK_Orders_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_FlightTickets" Association="Self.FK_Orders_FlightTickets">
+            <End Role="FlightTickets" EntitySet="FlightTickets" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="PedroFlightsModel.sysdiagram" />
+        </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PedroFlightsModelStoreContainer" CdmEntityContainer="dbModel">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="PedroFlightsModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="customerFirstName" ColumnName="customerFirstName" />
+                <ScalarProperty Name="customerLastName" ColumnName="customerLastName" />
+                <ScalarProperty Name="customerAge" ColumnName="customerAge" />
+                <ScalarProperty Name="customerPhone" ColumnName="customerPhone" />
+                <ScalarProperty Name="customerAddress" ColumnName="customerAddress" />
+                <ScalarProperty Name="customreCity" ColumnName="customreCity" />
+                <ScalarProperty Name="customerEmail" ColumnName="customerEmail" />
+                <ScalarProperty Name="customerImage" ColumnName="customerImage" />
+                <ScalarProperty Name="customerActive" ColumnName="customerActive" />
+                <ScalarProperty Name="customerUserName" ColumnName="customerUserName" />
+                <ScalarProperty Name="customerUserPassword" ColumnName="customerUserPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FlightTickets">
+            <EntityTypeMapping TypeName="PedroFlightsModel.FlightTicket">
+              <MappingFragment StoreEntitySet="FlightTickets">
+                <ScalarProperty Name="flightID" ColumnName="flightID" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="flightDestanation" ColumnName="flightDestanation" />
+                <ScalarProperty Name="flighGoDate" ColumnName="flighGoDate" />
+                <ScalarProperty Name="flightBackDate" ColumnName="flightBackDate" />
+                <ScalarProperty Name="flightConnection" ColumnName="flightConnection" />
+                <ScalarProperty Name="flightGate" ColumnName="flightGate" />
+                <ScalarProperty Name="flightSeat" ColumnName="flightSeat" />
+                <ScalarProperty Name="flightAirCompany" ColumnName="flightAirCompany" />
+                <ScalarProperty Name="flightTicketQuantity" ColumnName="flightTicketQuantity" />
+                <ScalarProperty Name="flightDepartment" ColumnName="flightDepartment" />
+                <ScalarProperty Name="flightTicketPicture" ColumnName="flightTicketPicture" />
+                <ScalarProperty Name="flightRow" ColumnName="flightRow" />
+                <ScalarProperty Name="flightNumber" ColumnName="flightNumber" />
+                <ScalarProperty Name="flightGoTime" ColumnName="flightGoTime" />
+                <ScalarProperty Name="flightBackTime" ColumnName="flightBackTime" />
+                <ScalarProperty Name="flightActive" ColumnName="flightActive" />
+                <ScalarProperty Name="flightPrice" ColumnName="flightPrice" />
+                <ScalarProperty Name="flightInfo" ColumnName="flightInfo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="PedroFlightsModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="flightID" ColumnName="flightID" />
+                <ScalarProperty Name="orderPrice" ColumnName="orderPrice" />
+                <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PedroFlightsModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

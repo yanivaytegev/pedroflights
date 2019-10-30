@@ -1,0 +1,72 @@
+﻿@model WebApplication2.Models.FlightTicket
+@{
+    ViewBag.Title = "flightDetails";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<style>
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+    }
+
+    .price {
+        color: grey;
+        font-size: 22px;
+    }
+
+    .card button {
+        border: none;
+        outline: 0;
+        padding: 12px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+        .card button:hover {
+            opacity: 0.7;
+        }
+</style>
+
+<br /><br /><br /><br />
+
+
+
+<div class="card">
+    <img src="../../images/flightImage/@Model.flightTicketPicture"  style="width:100%">
+    <h1> @Model.flightDestanation</h1>
+
+    <p><h5>Flight Go Date:</h5> @Model.flighGoDate </p>
+    <p><h5>Flight Back Date:</h5>@Model.flightBackDate</p>
+    <p><h5>Flight Connection:</h5> @Model.flightConnection</p>
+    <p><h5>Flight Gate:</h5>@Model.flightGate</p>
+    <p><h5>Flight Seat:</h5> @Model.flightSeat</p>
+    <p><h5>Flight Air Company:</h5>@Model.flightAirCompany</p>
+    <p><h5>Flight Ticket Quantity:</h5>@Model.flightTicketQuantity</p>
+    <p><h5>Flight Department:/h5> @Model.flightDepartment </ p >
+    <p><h5>Flight Row:</h5> @Model.flightRow</p>
+    <p><h5>Flight Number:</h5>@Model.flightNumber</p>
+    <p><h5>Flight Go Time:</h5> @Model.flightGoTime</p>
+    <p><h5>Flight Back Time:</h5> @Model.flightBackTime</p>
+    <p><h5>Flight Price:</h5> @Model.flightPrice</p>
+    <p><h5>Flight Info:</h5> @Model.flightInfo</p>
+
+    <p>
+        @using (Html.BeginForm("addToCart", "home"))
+        {
+            @Html.Hidden("returnUrl", Request.Url.ToString())
+            <button name="id" class="btn btn-danger btn-sm" value="@Model.flightID">Add To Cart</button>
+        }
+    </p>
+</div>
+<br /><br />
+

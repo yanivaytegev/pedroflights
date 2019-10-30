@@ -1,0 +1,60 @@
+﻿@model WebApplication2.Models.Customer
+
+@{
+    ViewBag.Title = "login";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<section class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image: url('../../images/image_4.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text align-items-center">
+                <div class="col-md-7 col-sm-12 ftco-animate">
+                    <h1 class="mb-3">Login</h1>
+                </div>
+                @using (Html.BeginForm("login", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="container login-container">
+                        <div class="row">
+                            <div style="right:inherit" class="col-md-12 login-form-1">
+
+                                <hr />
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.customerUserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.customerUserName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.customerUserName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.customerUserPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-12">
+                                        @Html.EditorFor(model => model.customerUserPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.customerUserPassword, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input style="background-color:#ffffff" type="submit" onclick="message()" value="login" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

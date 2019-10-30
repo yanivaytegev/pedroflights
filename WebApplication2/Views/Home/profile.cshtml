@@ -1,0 +1,76 @@
+﻿@model WebApplication2.Models.Customer
+
+@{
+    ViewBag.Title = "profile";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+    }
+
+    .title {
+        color: grey;
+        font-size: 18px;
+    }
+
+    button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    a {
+        text-decoration: none;
+        font-size: 22px;
+        color: black;
+    }
+
+        button:hover, a:hover {
+            opacity: 0.7;
+        }
+</style>
+
+
+<section class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image: url('../../images/hotel-5.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row slider-text align-items-center">
+                <div class="col-md-7 col-sm-12 ftco-animate">
+                    <h1 class="mb-3">Profile</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+]<br />
+]<br />
+ <div class="card">
+     <img src="../../images/customerImage/@Html.DisplayFor(model => model.customerImage)" alt="John" style="width:100%">
+     <h1>@Html.DisplayFor(model => model.customerFirstName)</h1>
+     <h2>@Html.DisplayFor(model => model.customerLastName)</h2>
+     <p class="title">@Html.DisplayFor(model => model.customerEmail)</p>
+     <p class="title">@Html.DisplayFor(model => model.customerPhone)</p>
+     <p class="title">@Html.DisplayFor(model => model.customerAddress)</p>
+     <p class="title">@Html.DisplayFor(model => model.customreCity)</p>
+ </div>
+
+<br />
+<br />
+
+
+
+
