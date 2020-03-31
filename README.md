@@ -1,4 +1,4 @@
 # pedroflights
 sell airline tickets
 
-Demo: live server http://pedro-flights.somee.com/
+Demo: live server http://pedroflights.somee.com/
